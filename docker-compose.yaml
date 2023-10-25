@@ -1,0 +1,26 @@
+services:
+
+  laravel-docker:
+    container_name: siakad-docker
+    build: .
+    volumes:
+      - ./siakad:/var/www/html
+    ports:
+      - 1945:80
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: OldSiakad4UMB
+      MYSQL_DATABASE: siakadold_umb
+    ports:
+    - 3306:3306
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: 'always'
+    ports:
+      - 1992:80
+    environment:
+      - PMA_ARBITRARY=1
+      - UPLOAD_LIMIT=1000M
